@@ -1,4 +1,4 @@
-# ⚡ Verilog Clock Frequency Generator ⚡
+# ⚡ Verilog Clock Frequency Calculator ⚡
 
 This project helps generate accurate Verilog clock code based on:
 
@@ -8,7 +8,7 @@ This project helps generate accurate Verilog clock code based on:
 
 ---
 
-## 🌐 Live Demo
+## Frequency-to-Delay Conversion Calculator
 
 👉 **[Open the Frequency Generator Tool](https://Bhuv27nesh.github.io/Verilog_Clock_Frequency_Calculator/User_Intreface_Freq_Calculator/)**
 
@@ -20,19 +20,16 @@ This project helps generate accurate Verilog clock code based on:
 
 ## 📚 Documentation 
 
-Detailed documentation is available in the Wiki section.
-
 This includes:
 
 - How clock frequency is calculated  
 - How delay depends on timescale  
-- Different methods to generate clocks in Verilog  
-- Best practices for simulation  
-
+- Different methods to generate clocks in Verilog
+- 
 ---
 
 ### 🧮 Frequency Calculation
-Learn how to convert frequency into delay.  
+Understanding how to convert frequency into delay.  
 ➡ [Go to Frequency Calculation](https://github.com/Bhuv27nesh/Verilog_Clock_Frequency_Calculator/wiki/Frequency_Calculation)
 
 ### ⏱ Clock Generation Methods
