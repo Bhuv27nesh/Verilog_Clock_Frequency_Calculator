@@ -1,7 +1,5 @@
 # ⚡ Verilog Clock Frequency Generator ⚡
 
-Welcome to the official documentation for the **Verilog Clock Frequency Generator** project.
-
 This project helps generate accurate Verilog clock code based on:
 
 - Required frequency (kHz / MHz / GHz)
