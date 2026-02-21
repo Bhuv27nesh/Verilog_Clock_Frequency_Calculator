@@ -9,7 +9,8 @@ This project helps generate accurate Verilog clock code based on:
 ---
 
 ## Pre-Requisites
-  **[Pre-requisites for Timescale Units](https://github.com/Bhuv27nesh/Verilog_Clock_Frequency_Calculator/wiki/Pre%E2%80%90requisites--for-timescale-units)
+
+👉 **[Pre-requisites for Timescale Units](https://github.com/Bhuv27nesh/Verilog_Clock_Frequency_Calculator/wiki/Pre%E2%80%90requisites--for-timescale-units)
 
 ---
 
