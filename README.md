@@ -14,6 +14,10 @@ This project helps generate accurate Verilog clock code based on:
 
 👉 **[Open the Frequency Generator Tool](https://Bhuv27nesh.github.io/Verilog_Clock_Frequency_Calculator/User_Intreface_Freq_Calculator/)**
 
+### Preview of Frequency Generator Tool is shown below:
+<img width="913" height="720" alt="image" src="https://github.com/user-attachments/assets/1928c6fc-f72c-4f3d-9e93-160dabed6915" />
+
+
 ---
 
 ## 📚 Documentation 
