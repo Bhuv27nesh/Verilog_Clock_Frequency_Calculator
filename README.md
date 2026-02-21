@@ -33,15 +33,11 @@ This includes:
 
 ### 🧮 Frequency Calculation
 Learn how to convert frequency into delay.  
-➡ [Go to Frequency Calculation](../../wiki/Frequency-Calculation)
+➡ [Go to Frequency Calculation](https://github.com/Bhuv27nesh/Verilog_Clock_Frequency_Calculator/wiki/Frequency_Calculation)
 
 ### ⏱ Clock Generation Methods
 Different procedural constructs used to generate clocks.  
 ➡ [Go to Clock Generation Methods](https://github.com/Bhuv27nesh/Verilog_Clock_Frequency_Calculator/wiki/Clock%E2%80%90Generation%E2%80%90Methods)
-
-### 📌 Best Practices
-Professional recommendations and simulation tips.  
-➡ [Go to Best Practices](../../wiki/Best-Practices)
 
 ---
 
