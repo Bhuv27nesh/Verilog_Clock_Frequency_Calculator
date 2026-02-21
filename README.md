@@ -1,6 +1,6 @@
 # ⚡ Verilog Clock Frequency Calculator ⚡
 
-This project helps generate accurate Verilog clock code based on:
+Helps to generate accurate Verilog clock code based on:
 
 - Required frequency (kHz / MHz / GHz)
 - Defined `timescale`
