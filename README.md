@@ -1,20 +1,63 @@
-# Verilog_Clock_Frequency_Calculator
+# ⚡ Verilog Clock Frequency Generator ⚡
 
-Understanding and implementing clock frequency concepts in Verilog HDL. It covers how to calculate clock frequency from time periods,
-correctly define clock signals in a testbench, and implement clock division and multiplication techniques in hardware.
-The goal is to build a strong foundation in handling clock generation, frequency scaling, and timing analysis in FPGA-based digital designs,
-whether the clock frequency is explicitly given or needs to be derived.
+Welcome to the official documentation for the **Verilog Clock Frequency Generator** project.
 
-# File Structure :
+This project helps generate accurate Verilog clock code based on:
 
+- Required frequency (kHz / MHz / GHz)
+- Defined `timescale`
+- Selected procedural construct
 
-# Methods of Generating Clock :
-In Verilog testbenches, generating a clock signal is one of the most fundamental tasks. A clock is created by continuously 
-toggling a signal at a fixed time interval, which corresponds to half of the clock period. The delay used for toggling depends 
-on the required frequency and the defined timescale.
+---
 
-There are multiple procedural constructs in Verilog that can be used to generate a clock. Each method has its own advantages 
-depending on whether you need an infinite clock, a fixed number of cycles, or controlled simulation behavior.
+## 🌐 Live Demo
 
-## Refer to the given link below :
-[CLOCK GENERATION METHODS](https://github.com/Bhuv27nesh/Verilog_Clock_Frequency_Calculator/wiki/Clock%E2%80%90Generation%E2%80%90Methods)
+👉 **[Open the Frequency Generator Tool](https://yourusername.github.io/your-repository-name/)**
+
+> Replace `yourusername` and `your-repository-name` with your actual GitHub details.
+
+---
+
+## 📚 Documentation 
+
+Detailed documentation is available in the Wiki section.
+
+This includes:
+
+- How clock frequency is calculated  
+- How delay depends on timescale  
+- Different methods to generate clocks in Verilog  
+- Best practices for simulation  
+
+---
+
+### 🧮 Frequency Calculation
+Learn how to convert frequency into delay.  
+➡ [Go to Frequency Calculation](../../wiki/Frequency-Calculation)
+
+### ⏱ Clock Generation Methods
+Different procedural constructs used to generate clocks.  
+➡ [Go to Clock Generation Methods](../../wiki/Clock-Generation-Methods)
+
+### 📌 Best Practices
+Professional recommendations and simulation tips.  
+➡ [Go to Best Practices](../../wiki/Best-Practices)
+
+---
+
+## 🎯 Purpose of This Project
+
+Clock generation is one of the most fundamental tasks in Verilog testbenches.  
+This tool simplifies delay calculation and automatically generates correct code blocks for simulation.
+
+---
+
+## 📌 Features
+
+✔ Automatic delay calculation  
+✔ Supports kHz, MHz, GHz  
+✔ Multiple clock generation constructs  
+✔ Clean and beginner-friendly interface  
+✔ No installation required  
+
+---
