@@ -13,8 +13,7 @@ This project helps generate accurate Verilog clock code based on:
 👉 **[Open the Frequency-to-Delay Conversion Tool](https://Bhuv27nesh.github.io/Verilog_Clock_Frequency_Calculator/User_Intreface_Freq_Calculator/)**
 
 ### Preview of Frequency Generator Tool is shown below:
-<img width="913" height="720" alt="image" src="https://github.com/user-attachments/assets/1928c6fc-f72c-4f3d-9e93-160dabed6915" />
-
+<img width="977" height="723" alt="image" src="https://github.com/user-attachments/assets/dc6890ca-4e90-4271-a708-8ac99ad88641" />
 
 ---
 
