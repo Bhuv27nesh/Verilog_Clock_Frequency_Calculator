@@ -21,8 +21,7 @@ This project helps generate accurate Verilog clock code based on:
 
 This includes:
 
-- How clock frequency is calculated  
-- How delay depends on timescale  
+- How clock frequency is calculated   
 - Different methods to generate clocks in Verilog
 ---
 
