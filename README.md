@@ -37,7 +37,7 @@ Learn how to convert frequency into delay.
 
 ### ⏱ Clock Generation Methods
 Different procedural constructs used to generate clocks.  
-➡ [Go to Clock Generation Methods](../../wiki/Clock-Generation-Methods)
+➡ [Go to Clock Generation Methods](https://github.com/Bhuv27nesh/Verilog_Clock_Frequency_Calculator/wiki/Clock%E2%80%90Generation%E2%80%90Methods)
 
 ### 📌 Best Practices
 Professional recommendations and simulation tips.  
