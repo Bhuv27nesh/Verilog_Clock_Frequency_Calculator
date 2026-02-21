@@ -21,14 +21,19 @@ body {
     border-radius: 15px;
     box-shadow: 0 0 25px rgba(0,255,255,0.3);
     text-align: center;
-    width: 600px;
+    width: 650px;
 }
 
 h1 {
-    margin-bottom: 25px;
-    font-size: 28px;
+    margin-bottom: 10px;
+    font-size: 26px;
     color: #00ffff;
     letter-spacing: 2px;
+}
+
+h6 {
+    margin-top: 0;
+    color: #aaa;
 }
 
 select, input {
@@ -71,18 +76,36 @@ textarea {
 <div class="container">
 
 <h1>⚡ VERILOG CLOCK GENERATOR ⚡</h1>
-<h6> By : Bhuvanesh </h6>
-    
+<h6>By : Bhuvanesh</h6>
+
 <label>Timescale:</label><br>
+
 <select id="time_unit">
   <option value="1e-9">1ns</option>
-  <option value="1e-12">1ps</option>
+  <option value="10e-9">10ns</option>
+  <option value="100e-9">100ns</option>
+
   <option value="1e-6">1us</option>
+  <option value="10e-6">10us</option>
+  <option value="100e-6">100us</option>
+
+  <option value="1e-12">1ps</option>
+  <option value="10e-12">10ps</option>
+  <option value="100e-12">100ps</option>
 </select>
 
 <select id="time_precision">
-  <option>1ps</option>
-  <option>1ns</option>
+  <option value="1e-12">1ps</option>
+  <option value="10e-12">10ps</option>
+  <option value="100e-12">100ps</option>
+
+  <option value="1e-9">1ns</option>
+  <option value="10e-9">10ns</option>
+  <option value="100e-9">100ns</option>
+
+  <option value="1e-6">1us</option>
+  <option value="10e-6">10us</option>
+  <option value="100e-6">100us</option>
 </select>
 
 <br>
@@ -121,21 +144,30 @@ function generateCode() {
 
   let timeUnit = parseFloat(document.getElementById("time_unit").value);
   let timeUnitText = document.getElementById("time_unit").selectedOptions[0].text;
-  let timePrecision = document.getElementById("time_precision").value;
+
+  let timePrecision = parseFloat(document.getElementById("time_precision").value);
+  let timePrecisionText = document.getElementById("time_precision").selectedOptions[0].text;
+
   let freq = parseFloat(document.getElementById("frequency").value);
   let freqUnit = parseFloat(document.getElementById("freq_unit").value);
   let blockType = document.getElementById("block_type").value;
 
-  if (!freq) {
-      alert("Please enter frequency");
+  if (!freq || freq <= 0) {
+      alert("Please enter a valid frequency value.");
+      return;
+  }
+
+  // 🔴 Error if time unit < time precision
+  if (timeUnit < timePrecision) {
+      alert("Error: Time Unit cannot be smaller than Time Precision.");
       return;
   }
 
   let freqHz = freq * freqUnit;
   let delay = 1 / (2 * freqHz * timeUnit);
-  delay = delay.toFixed(6);
+  delay = parseFloat(delay.toFixed(6));
 
-  let code = "`timescale " + timeUnitText + "/" + timePrecision + "\n\n";
+  let code = "`timescale " + timeUnitText + "/" + timePrecisionText + "\n\n";
   code += "reg clk = 0;\n";
 
   if(blockType == "always") {
