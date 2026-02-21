@@ -24,7 +24,6 @@ This includes:
 - How clock frequency is calculated  
 - How delay depends on timescale  
 - Different methods to generate clocks in Verilog
-- 
 ---
 
 ### 🧮 Frequency Calculation
