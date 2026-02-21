@@ -12,9 +12,7 @@ This project helps generate accurate Verilog clock code based on:
 
 ## 🌐 Live Demo
 
-👉 **[Open the Frequency Generator Tool](https://yourusername.github.io/your-repository-name/)**
-
-> Replace `yourusername` and `your-repository-name` with your actual GitHub details.
+👉 **[Open the Frequency Generator Tool](https://Bhuv27nesh.github.io/Verilog_Clock_Frequency_Calculator/index.html)**
 
 ---
 
