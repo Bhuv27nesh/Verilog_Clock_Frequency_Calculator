@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Verilog Frequency Generator</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1e1e2f, #121212);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: #222;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0,255,255,0.3);
+    text-align: center;
+    width: 500px;
+}
+
+h1 {
+    margin-bottom: 25px;
+    font-size: 28px;
+    color: #00ffff;
+    letter-spacing: 2px;
+}
+
+select, input {
+    padding: 8px;
+    margin: 8px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+}
+
+button {
+    padding: 10px 20px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    background: #00ffff;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #00cccc;
+}
+
+textarea {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 8px;
+    padding: 10px;
+    background: #111;
+    color: #00ff88;
+    border: 1px solid #00ffff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>⚡ VERILOG CLOCK GENERATOR ⚡</h1>
+
+<label>Timescale:</label><br>
+<select id="time_unit">
+  <option value="1e-9">1ns</option>
+  <option value="1e-12">1ps</option>
+  <option value="1e-6">1us</option>
+</select>
+
+<select id="time_precision">
+  <option>1ps</option>
+  <option>1ns</option>
+</select>
+
+<br>
+
+<label>Frequency:</label><br>
+<input type="number" id="frequency" placeholder="Enter value">
+
+<select id="freq_unit">
+  <option value="1e3">kHz</option>
+  <option value="1e6">MHz</option>
+  <option value="1e9">GHz</option>
+</select>
+
+<br>
+
+<label>Construct Type:</label><br>
+<select id="block_type">
+  <option value="always">always block</option>
+  <option value="repeat">repeat block</option>
+  <option value="for">for loop</option>
+  <option value="while">while loop</option>
+</select>
+
+<br>
+
+<button onclick="generateCode()">Generate Code</button>
+
+<textarea id="output" rows="10"></textarea>
+
+<button onclick="copyCode()">Copy Code</button>
+
+</div>
+
+<script>
+function generateCode() {
+
+  let timeUnit = parseFloat(document.getElementById("time_unit").value);
+  let timeUnitText = document.getElementById("time_unit").selectedOptions[0].text;
+  let timePrecision = document.getElementById("time_precision").value;
+  let freq = parseFloat(document.getElementById("frequency").value);
+  let freqUnit = parseFloat(document.getElementById("freq_unit").value);
+  let blockType = document.getElementById("block_type").value;
+
+  if (!freq) {
+      alert("Please enter frequency");
+      return;
+  }
+
+  let freqHz = freq * freqUnit;
+  let delay = 1 / (2 * freqHz * timeUnit);
+  delay = delay.toFixed(6);
+
+  let code = "`timescale " + timeUnitText + "/" + timePrecision + "\n\n";
+  code += "reg clk = 0;\n";
+
+  if(blockType == "always") {
+    code += "always #" + delay + " clk = ~clk;";
+  }
+  else if(blockType == "repeat") {
+    code += "initial begin\n  repeat(100)\n    #" + delay + " clk = ~clk;\nend";
+  }
+  else if(blockType == "for") {
+    code += "integer i;\ninitial begin\n  for(i=0;i<100;i=i+1)\n    #" + delay + " clk = ~clk;\nend";
+  }
+  else if(blockType == "while") {
+    code += "initial begin\n  while(1)\n    #" + delay + " clk = ~clk;\nend";
+  }
+
+  document.getElementById("output").value = code;
+}
+
+function copyCode() {
+  let text = document.getElementById("output");
+  text.select();
+  document.execCommand("copy");
+  alert("Code copied!");
+}
+</script>
+
+</body>
+</html>
