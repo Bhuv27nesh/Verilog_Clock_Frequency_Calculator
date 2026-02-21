@@ -54,6 +54,5 @@ This tool simplifies delay calculation and automatically generates correct code 
 ✔ Supports kHz, MHz, GHz  
 ✔ Multiple clock generation constructs  
 ✔ Clean and beginner-friendly interface  
-✔ No installation required  
 
 ---
