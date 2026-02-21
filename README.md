@@ -45,7 +45,7 @@ Professional recommendations and simulation tips.
 
 ---
 
-## 🎯 Purpose of This Project
+## 🎯 Purpose
 
 Clock generation is one of the most fundamental tasks in Verilog testbenches.  
 This tool simplifies delay calculation and automatically generates correct code blocks for simulation.
