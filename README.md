@@ -57,5 +57,8 @@ This tool simplifies delay calculation and automatically generates correct code 
 ---
 
 ## Bonus  
+
 👉 **[Clock Frequency Scaling](https://github.com/Bhuv27nesh/Verilog_Clock_Frequency_Calculator/wiki/Clock-Frequency-Scaling-in-Digital-Design)**  
-👉 **[Clock Scaling Calculator](https://Bhuv27nesh.github.io/Verilog_Clock_Frequency_Calculator/BONUS/)**
+👉 **[Clock Scaling Calculator](https://Bhuv27nesh.github.io/Verilog_Clock_Frequency_Calculator/BONUS/)**  
+
+---
