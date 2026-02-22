@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CLOCK SCALING CALCULATOR</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #141E30, #243B55);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: #1e1e2f;
+    padding: 40px;
+    border-radius: 15px;
+    width: 900px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0,255,255,0.3);
+}
+
+h1 {
+    color: #00ffff;
+}
+
+input, select {
+    padding: 8px;
+    margin: 8px;
+    border-radius: 6px;
+    border: none;
+}
+
+button {
+    padding: 10px 20px;
+    margin-top: 15px;
+    border-radius: 8px;
+    border: none;
+    background: #00ffff;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #00cccc;
+}
+
+textarea {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 8px;
+    padding: 15px;
+    background: #111;
+    color: #00ff88;
+    border: 1px solid #00ffff;
+    font-family: monospace;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>⚡ CLOCK SCALING CALCULATOR ⚡</h1>
+<h6> By : Bhuvanesh </h6>
+
+<label>Input Frequency (Fin)</label><br>
+<input type="number" id="fin" placeholder="Enter value">
+<select id="fin_unit">
+  <option value="1e6">MHz</option>
+  <option value="1e9">GHz</option>
+  <option value="1e3">kHz</option>
+</select>
+
+<br>
+
+<label>Target Frequency (Fout)</label><br>
+<input type="number" id="fout" placeholder="Enter value">
+<select id="fout_unit">
+  <option value="1e6">MHz</option>
+  <option value="1e9">GHz</option>
+  <option value="1e3">kHz</option>
+</select>
+
+<br>
+
+<button onclick="generate()">Generate Verilog</button>
+
+<textarea id="output" rows="25"></textarea>
+
+</div>
+
+<script>
+
+function gcd(a, b) {
+    return b == 0 ? a : gcd(b, a % b);
+}
+
+function generate() {
+
+    let fin = parseFloat(document.getElementById("fin").value);
+    let fout = parseFloat(document.getElementById("fout").value);
+    let finUnit = parseFloat(document.getElementById("fin_unit").value);
+    let foutUnit = parseFloat(document.getElementById("fout_unit").value);
+
+    if (!fin || !fout || fin <= 0 || fout <= 0) {
+        alert("Enter valid frequencies");
+        return;
+    }
+
+    let Fin = fin * finUnit;
+    let Fout = fout * foutUnit;
+
+    let ratio = Fout / Fin;
+
+    let scale = 1000000;
+    let M = Math.round(ratio * scale);
+    let N = scale;
+
+    let divisor = gcd(M, N);
+    M = M / divisor;
+    N = N / divisor;
+
+    let result = "";
+    result += "/* =============================== */\n";
+    result += "/* CLOCK SCALING RESULT            */\n";
+    result += "/* =============================== */\n\n";
+    result += "Fin  = " + Fin + " Hz\n";
+    result += "Fout = " + Fout + " Hz\n";
+    result += "Ratio = " + ratio.toFixed(8) + "\n";
+    result += "M/N   = " + M + "/" + N + "\n\n";
+
+    // PURE DIVIDER
+    if (M == 1 && N > 1) {
+
+        result += "/* ===== INTEGER CLOCK DIVIDER ===== */\n\n";
+
+        result += "module clock_divider #(parameter N = " + N +")(clk_in, rst, clk_out);\n";
+        result += "    input  wire clk_in;\n";
+        result += "    input  wire rst;\n";
+        result += "    output reg  clk_out;\n";
+
+        result += "reg [$clog2(N)-1:0] counter;\n\n";
+
+        result += "always @(posedge clk_in or posedge rst) begin\n";
+        result += "    if (rst) begin\n";
+        result += "        counter <= 0;\n";
+        result += "        clk_out <= 0;\n";
+        result += "    end\n";
+        result += "    else begin\n";
+        result += "        if (counter == (N/2 - 1)) begin\n";
+        result += "            clk_out <= ~clk_out;\n";
+        result += "            counter <= 0;\n";
+        result += "        end\n";
+        result += "        else begin\n";
+        result += "            counter <= counter + 1;\n";
+        result += "        end\n";
+        result += "    end\n";
+        result += "end\n\n";
+        result += "endmodule\n";
+    }
+
+    // PURE MULTIPLIER
+    else if (N == 1 && M > 1) {
+
+        result += "/* ===== PLL MULTIPLIER REQUIRED ===== */\n\n";
+
+        result += "module pll_multiplier #(parameter M = " + M + ")(clk_in, rst, clk_out, locked);";
+        result += "    input  wire clk_in;\n";
+        result += "    input  wire rst;\n";
+        result += "    output wire clk_out;\n";
+        result += "    output wire locked;\n";
+
+        result += "// Instantiate Vendor PLL IP Here\n";
+        result += "// Configure MULTIPLY = " + M + "\n";
+        result += "// DIVIDE = 1\n\n";
+
+        result += "endmodule\n";
+    }
+
+    // FRACTIONAL PLL
+    else {
+
+        result += "/* ===== FRACTIONAL PLL (M/N) ===== */\n\n";
+
+        result += "module pll_m_n #(parameter M = " + M + ", parameter N = " + N + ")(clk_in, rst, clk_out, locked);\n";
+        result += "    input  wire clk_in;\n";
+        result += "    input  wire rst;\n";
+        result += "    output wire clk_out;\n";
+        result += "    output wire locked;\n";
+
+        result += "// Instantiate Vendor PLL IP Here\n";
+        result += "// Configure MULTIPLY = " + M + "\n";
+        result += "// Configure DIVIDE   = " + N + "\n\n";
+
+        result += "endmodule\n";
+    }
+
+    document.getElementById("output").value = result;
+}
+
+</script>
+
+</body>
+</html>
